@@ -1,6 +1,6 @@
 <template>
 
-<h2>edit</h2>
+<h3>edit</h3>
 </template>
  <script>
  export default {
