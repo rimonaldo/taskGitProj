@@ -7,6 +7,8 @@
 <script>
 import appHeader from '@/cmps/app-header.vue'
 import appFooter from './cmps/app-footer.vue'
+
+
 export default {
   components: {
     appHeader,
@@ -20,6 +22,9 @@ export default {
   methods: {},
   computed: {
   },
+  created(){
+    this.$store.dispatch({type:'query'})
+  }
 
 }
 </script>
