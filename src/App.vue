@@ -1,6 +1,6 @@
 <template>
   <app-header />
-  
+  <router-view />
   <app-footer />
 </template>
 
@@ -21,7 +21,6 @@ export default {
   },
   methods: {},
   computed: {
-
   },
   created(){
     this.$store.dispatch({type:'query'})
