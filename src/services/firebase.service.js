@@ -16,7 +16,7 @@ import {
   GoogleAuthProvider,
   RecaptchaVerifier,
 } from "firebase/auth";
-
+let gTasks = [];
 const firebaseConfig = {
   apiKey: "AIzaSyC3cDSRUOUaTd6adpIRez_lFPgXEw-48N4",
   authDomain: "tasker-57fe8.firebaseapp.com",
@@ -36,26 +36,36 @@ const db = getFirestore();
 // collection ref
 const colRef = collection(db, "task");
 
-async function onInit() {
-  // real-time collection data
+// get collection data when page is loaded.
+// window.addEventListener("load", onInit);
+function onInit() {
+  onSnapshot(colRef, (snapshot) => {
+    console.log("snapshot :>> 123", snapshot);
+    const tasks = snapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
+    gTasks = tasks;
+  });
+}
 
-  // onSnapshot(colRef, (snapshot) => {
-  //   console.log("snapshot :>> 123", snapshot);
-  //   const tasks = snapshot.docs.map((doc) => {
-  //     return { id: doc.id, ...doc.data() };
-  //   })
-
-  // })
-
-  // getting the collection - not-real-time way:
- return await getDocs(colRef)
-    .then((snapshot) => {
-      const tasks = snapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() }
-      })
+async function query() {
+  let tasks 
+  try{
+    const db = await getFirestore();
+    const colRef = await collection(db, "task");
+    await onSnapshot(colRef, (snapshot) => {
+      console.log("snapshot :>> 123", snapshot);
+      tasks =  snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
       console.log(tasks);
-    })
-    .catch((err) => console.error(err))
+      return tasks
+    });
+
+  }catch{
+
+  }finally{
+  }
 }
 
 // adding docs
@@ -175,4 +185,10 @@ function _renderLoggedUser(user) {
 export default {
   db,
   colRef,
+  gTasks,
+  onInit,
+  query,
+  onSnapshot,
+  getFirestore,
+  collection,
 };

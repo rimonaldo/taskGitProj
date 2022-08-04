@@ -7,7 +7,7 @@
 <script>
 import appHeader from '@/cmps/app-header.vue'
 import appFooter from './cmps/app-footer.vue'
-
+import firebaseService from './services/firebase.service.js'
 
 export default {
   components: {
@@ -21,6 +21,10 @@ export default {
   },
   methods: {},
   computed: {
+    tasks(){
+      console.log(firebaseService.gTasks);
+      return firebaseService.gTasks
+    }
   },
   created(){
     this.$store.dispatch({type:'query'})
