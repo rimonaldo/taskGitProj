@@ -1,12 +1,11 @@
 // import { userStore } from './modules/user.store.js'
 import { createStore } from "vuex";
-
+import firebaseService from '../services/firebase.service.js'
 const store = createStore({
   strict: true,
-  starredBoard: {},
-  isCover: false,
+
   state: {
-  
+    taskDb:{}
   },
   getters: {
    
@@ -16,7 +15,10 @@ const store = createStore({
     
   },
   actions: {
-   
+    async query(){
+      const db = await firebaseService.colRef
+      console.log(db)
+    }
   },
   modules: {
   },
