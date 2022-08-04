@@ -1,4 +1,11 @@
-<template></template>
+<template>
+<section class="footer">
+
+<h3>footer</h3>
+
+
+</section>
+</template>
  <script>
  export default {
  name: 'ProjectApp',

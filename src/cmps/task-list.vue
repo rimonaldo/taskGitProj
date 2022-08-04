@@ -1,10 +1,7 @@
 <template>
-<section class="header">
 
-<h3>header</h3>
+    
 
-
-</section>
 </template>
  <script>
  export default {
@@ -14,12 +11,9 @@
    return {};
     },
   created() {},
- methods: {
-
- },
+ methods: {},
  computed: {},
  unmounted() {},
   };
-  
   </script>
  <style></style>
