@@ -1,5 +1,5 @@
 <template>
-
+<h1>branch practice</h1>
     <task-preview v-for="task in tasks" :key="task.id" :task="task" />
 </template>
  <script>
@@ -14,8 +14,10 @@
     return {};
     },
     methods: {},
- computed: {},
-    components: {taskPreview},
+     computed: {},
+    components: { 
+      taskPreview
+      },
   }
   </script>
  <style></style>
