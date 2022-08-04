@@ -16,7 +16,7 @@ import {
   GoogleAuthProvider,
   RecaptchaVerifier,
 } from "firebase/auth";
-let gTasks = []
+let gTasks = [];
 const firebaseConfig = {
   apiKey: "AIzaSyC3cDSRUOUaTd6adpIRez_lFPgXEw-48N4",
   authDomain: "tasker-57fe8.firebaseapp.com",
@@ -37,31 +37,35 @@ const db = getFirestore();
 const colRef = collection(db, "task");
 
 // get collection data when page is loaded.
-window.addEventListener("load", onInit);
-
+// window.addEventListener("load", onInit);
 function onInit() {
-  // real-time collection data
-
   onSnapshot(colRef, (snapshot) => {
     console.log("snapshot :>> 123", snapshot);
     const tasks = snapshot.docs.map((doc) => {
       return { id: doc.id, ...doc.data() };
     });
-    gTasks = tasks
-    console.log(tasks);
-
-    // _renderBooksTable(books)
+    gTasks = tasks;
   });
+}
 
-  // getting the collection - not-real-time way:
-  // getDocs(colRef)
-  //   .then((snapshot) => {
-  //     const books = snapshot.docs.map((doc) => {
-  //       return { id: doc.id, ...doc.data() }
-  //     })
-  //     _renderBooksTable(books)
-  //   })
-  //   .catch((err) => console.error(err))
+async function query() {
+  let tasks 
+  try{
+    const db = await getFirestore();
+    const colRef = await collection(db, "task");
+    await onSnapshot(colRef, (snapshot) => {
+      console.log("snapshot :>> 123", snapshot);
+      tasks =  snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+      console.log(tasks);
+      return tasks
+    });
+
+  }catch{
+
+  }finally{
+  }
 }
 
 // adding docs
@@ -182,4 +186,10 @@ function _renderLoggedUser(user) {
 export default {
   db,
   colRef,
+  gTasks,
+  onInit,
+  query,
+  onSnapshot,
+  getFirestore,
+  collection,
 };

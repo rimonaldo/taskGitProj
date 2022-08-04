@@ -1,5 +1,5 @@
 <template>
-  <main class="task-details">
+  <main class="task-details" v-if="tasks">
   
   <section class="tasks-container">
 
@@ -11,14 +11,15 @@
 
 <script>
 import taskList from '../cmps/task-list.vue'
+import firebaseService from '../services/firebase.service';
   export default {
     components:{
       taskList
     },
     computed:{
       tasks(){
-        return
-      }
+      return this.$store.getters.tasks
+    }
     }
   }
 </script>
