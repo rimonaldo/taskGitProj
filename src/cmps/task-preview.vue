@@ -7,6 +7,7 @@
   <div class="task-item">{{task.doneAt}}</div>
   <div class="task-item">{{task.status}}</div>
   </article>
+  <h1>some change</h1>
 </template>
  <script>
  export default {
