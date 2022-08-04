@@ -1,19 +1,21 @@
 <template>
 
-    
-
+    <task-preview v-for="task in tasks" :key="task.id" :task="task" />
 </template>
  <script>
+ import taskPreview from '@/cmps/task-preview.vue'
+
  export default {
- name: 'ProjectApp',
-    components: {},
+ name: 'taskList',
+ props:{
+  tasks:Array
+ },
   data() {
-   return {};
+    return {};
     },
-  created() {},
- methods: {},
+    methods: {},
  computed: {},
- unmounted() {},
-  };
+    components: {taskPreview},
+  }
   </script>
  <style></style>
