@@ -16,7 +16,7 @@ import {
   GoogleAuthProvider,
   RecaptchaVerifier,
 } from "firebase/auth";
-
+let gTasks = []
 const firebaseConfig = {
   apiKey: "AIzaSyC3cDSRUOUaTd6adpIRez_lFPgXEw-48N4",
   authDomain: "tasker-57fe8.firebaseapp.com",
@@ -47,6 +47,9 @@ function onInit() {
     const tasks = snapshot.docs.map((doc) => {
       return { id: doc.id, ...doc.data() };
     });
+    gTasks = tasks
+    console.log(tasks);
+
     // _renderBooksTable(books)
   });
 
