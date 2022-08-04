@@ -15,8 +15,8 @@ const store = createStore({
     
   },
   actions: {
-    async query(){
-      const db = await firebaseService.colRef
+   async query(){
+      const db = await firebaseService.onInit()
       console.log(db)
     }
   },

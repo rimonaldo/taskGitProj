@@ -24,7 +24,7 @@ const firebaseConfig = {
   storageBucket: "tasker-57fe8.appspot.com",
   messagingSenderId: "1037517625586",
   appId: "1:1037517625586:web:7e2bf21855f085395b586b",
-  measurementId: "G-DB6RPW6P1B",
+  measurementId: "G-DB6RPW6P1B"
 };
 
 // init firebase app
@@ -36,33 +36,30 @@ const db = getFirestore();
 // collection ref
 const colRef = collection(db, "task");
 
-// get collection data when page is loaded.
-window.addEventListener("load", onInit);
-
-function onInit() {
+async function onInit() {
   // real-time collection data
 
-  onSnapshot(colRef, (snapshot) => {
-    console.log("snapshot :>> 123", snapshot);
-    const tasks = snapshot.docs.map((doc) => {
-      return { id: doc.id, ...doc.data() };
-    });
-    // _renderBooksTable(books)
-  });
+  // onSnapshot(colRef, (snapshot) => {
+  //   console.log("snapshot :>> 123", snapshot);
+  //   const tasks = snapshot.docs.map((doc) => {
+  //     return { id: doc.id, ...doc.data() };
+  //   })
+
+  // })
 
   // getting the collection - not-real-time way:
-  // getDocs(colRef)
-  //   .then((snapshot) => {
-  //     const books = snapshot.docs.map((doc) => {
-  //       return { id: doc.id, ...doc.data() }
-  //     })
-  //     _renderBooksTable(books)
-  //   })
-  //   .catch((err) => console.error(err))
+ return await getDocs(colRef)
+    .then((snapshot) => {
+      const tasks = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() }
+      })
+      console.log(tasks);
+    })
+    .catch((err) => console.error(err))
 }
 
 // adding docs
-const addBookForm = document.querySelector(".add");
+// const addBookForm = document.querySelector(".add");
 
 // addBookForm.addEventListener('submit', (ev) => {
 //   ev.preventDefault()
@@ -168,7 +165,6 @@ const elLoginBtn = document.querySelector(".login-btn");
 //     });
 // }
 
-const elUserImg = document.querySelector(".user-img");
 function _renderLoggedUser(user) {
   console.log("user", user?.reloadUserInfo?.photoUrl);
   elUserImg.setAttribute("src", user.reloadUserInfo.photoUrl);
