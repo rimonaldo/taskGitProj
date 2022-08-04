@@ -1,0 +1,54 @@
+.slogan{
+    @media only screen and (max-width: $break-small) {
+      flex-wrap: wrap;
+    }
+    display: flex;
+    align-items: center;
+    // flex-wrap: wrap;
+    //   border: 1px white solid;
+    .img {
+      width: 915px;
+      img {
+        width: 100%;
+      }
+    }
+  
+    .text {
+      position: relative;
+      top: 30px;
+      text-align: start;
+  
+      h2 {
+        @media only screen and (max-width: $break-small) {
+          width: 100%;
+          font-size: 20px;
+        }
+        font-size: rem(40px);
+        line-height: 50px;
+        width: 70%;
+        margin-block-end: 20px;
+      }
+  
+      p {
+        @media only screen and (max-width: $break-small) {
+          width: 100%;
+          font-size: 14px;
+        }
+        font-size: 16px;
+        margin-block-end: 20px;
+      }
+    }
+  
+    a {
+      display: flex;
+      align-items: center;
+      color: #62e0d9;
+      border-bottom: 1px #62e0d9 solid;
+      width: max-content;
+      img {
+        margin-inline-start: 1em;
+      }
+    }
+    margin-bottom: 100px;
+  }
+  
